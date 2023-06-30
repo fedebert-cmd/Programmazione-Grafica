@@ -67,3 +67,19 @@ Poi il rettangolo ruota attorno al centro dello schermo.
 Infine vengono implementate diverse trasformazioni a due rettangoli.
 
 <img src="https://github.com/fedebert-cmd/Programmazione-Grafica/blob/main/Images/15.PNG" width="300">
+
+## 5-Coordinate_System
+
+Sposto le coordinate dei vertici attraverso le matrici model, view e projection.
+
+<img src="https://github.com/fedebert-cmd/Programmazione-Grafica/blob/main/Images/16.PNG" width="300">
+
+Disegno un cubo implementando uno z-buffer in cui vengono salvate le informazioni di profondità.
+
+<img src="https://github.com/fedebert-cmd/Programmazione-Grafica/blob/main/Images/17.PNG" width="300">
+
+Vari cubi con posizioni e rotazioni random. Infine alcuni ruotano su se stessi.
+
+<img src="https://github.com/fedebert-cmd/Programmazione-Grafica/blob/main/Images/18.PNG" width="300">
+
+## 6-Camera
