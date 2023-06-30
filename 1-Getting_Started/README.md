@@ -52,5 +52,18 @@ Cambio la percentuale di mix tra le due texture a run-time o con le frecce della
 
 Infine applico diversi metodi di wrapping.
 
-## 4-Transformation
 <img src="https://github.com/fedebert-cmd/Programmazione-Grafica/blob/main/Images/12.PNG" width="300">
+
+## 4-Tranformation
+
+Ora si applicano delle trasformazioni. La prima è la traslazione.
+
+<img src="https://github.com/fedebert-cmd/Programmazione-Grafica/blob/main/Images/13.PNG" width="300">
+
+Poi il rettangolo ruota attorno al centro dello schermo.
+
+<img src="https://github.com/fedebert-cmd/Programmazione-Grafica/blob/main/Images/14.PNG" width="300">
+
+Infine vengono implementate diverse trasformazioni a due rettangoli.
+
+<img src="https://github.com/fedebert-cmd/Programmazione-Grafica/blob/main/Images/15.PNG" width="300">
