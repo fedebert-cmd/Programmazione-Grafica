@@ -35,3 +35,5 @@ Utilizzo di un offset per spostare il triangolo sull'asse orrizzontale.
 Infine il vertex shader restituisce in output il vettore posizione, utilizzato poi dal fragment per colorare.
 
 <img src="https://github.com/fedebert-cmd/Programmazione-Grafica/blob/main/Images/8.PNG" width="300">
+
+## 3-Texture
