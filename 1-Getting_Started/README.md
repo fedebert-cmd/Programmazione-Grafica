@@ -83,3 +83,7 @@ Vari cubi con posizioni e rotazioni random. Infine alcuni ruotano su se stessi.
 <img src="https://github.com/fedebert-cmd/Programmazione-Grafica/blob/main/Images/18.PNG" width="300">
 
 ## 6-Camera
+
+Nell'ultima parte del primo capitolo viene implementata la camera. Prima ruota nel tempo attorno alla scena, poi è possibile muoverla con WASD da tastiera e con il mouse. Inoltre con la rotella del mouse gestisco lo zoom. Infine viene gestita la camera come se ci si trovasse all'interno di un videogioco FPS e per ultimo è stata creata la propria funzione LookAt.
+
+<img src="https://github.com/fedebert-cmd/Programmazione-Grafica/blob/main/Images/19.PNG" width="300">
