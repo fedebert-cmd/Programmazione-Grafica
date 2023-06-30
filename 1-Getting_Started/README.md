@@ -37,3 +37,20 @@ Infine il vertex shader restituisce in output il vettore posizione, utilizzato p
 <img src="https://github.com/fedebert-cmd/Programmazione-Grafica/blob/main/Images/8.PNG" width="300">
 
 ## 3-Texture
+
+Aggiunta della prima texture a un rettangolo.
+
+<img src="https://github.com/fedebert-cmd/Programmazione-Grafica/blob/main/Images/9.PNG" width="300">
+
+Caricamento di una seconda texture mixandola alla prima.
+
+<img src="https://github.com/fedebert-cmd/Programmazione-Grafica/blob/main/Images/10.PNG" width="300">
+
+Cambio la percentuale di mix tra le due texture a run-time o con le frecce della tastiera.
+
+<img src="https://github.com/fedebert-cmd/Programmazione-Grafica/blob/main/Images/11.PNG" width="300">
+
+Infine applico diversi metodi di wrapping.
+
+## 4-Transformation
+<img src="https://github.com/fedebert-cmd/Programmazione-Grafica/blob/main/Images/12.PNG" width="300">
