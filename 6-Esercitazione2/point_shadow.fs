@@ -18,12 +18,13 @@ uniform bool shadows;
 
 float ShadowCalculation(vec3 fragPos)
 {
+    // vettore tra la fragment position e la light position
     vec3 fragToLight = fragPos - lightPos;
-   
+    // usa il vettore fragment to light per campionare dalla depth map
     float closestDepth = texture(depthMap, fragToLight).r;
-
+    // è in range [0,1] quindi lo riportiamo al valore di depth originale
     closestDepth *= far_plane;
-
+    // la depth corrente è data dalla lunghezza tra la posizione del frammento e la luce
     float currentDepth = length(fragToLight);
 
     float bias = 0.05;
@@ -50,7 +51,7 @@ void main()
     vec3 halfwayDir = normalize(lightDir + viewDir);  
     spec = pow(max(dot(normal, halfwayDir), 0.0), 64.0);
     vec3 specular = spec * lightColor;    
-
+    // calcola l'ombra
     float shadow = shadows ? ShadowCalculation(fs_in.FragPos) : 0.0;                      
     vec3 lighting = (ambient + (1.0 - shadow) * (diffuse + specular)) * color;    
     

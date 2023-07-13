@@ -66,11 +66,11 @@ int main()
     Shader simpleDepthShader("point_shadow_depth.vs", "point_shadow_depth.fs", "point_shadow_depth.gs");
 
     unsigned int woodTexture = loadTexture("wood.png");
-
+    // configurazione del depth map FBO
     const unsigned int SHADOW_WIDTH = 1024, SHADOW_HEIGHT = 1024;
     unsigned int depthMapFBO;
     glGenFramebuffers(1, &depthMapFBO);
-
+    // creazione del depth cubemap texture
     unsigned int depthCubemap;
     glGenTextures(1, &depthCubemap);
     glBindTexture(GL_TEXTURE_CUBE_MAP, depthCubemap);
@@ -101,12 +101,12 @@ int main()
         lastFrame = currentFrame;
 
         processInput(window);
-
+        // muovi la posizione della luce in funzione del tempo
         lightPos.z = static_cast<float>(sin(glfwGetTime() * 0.5) * 3.0);
 
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+        // creo le depth cubemap transformation matrices
         float near_plane = 1.0f;
         float far_plane = 25.0f;
         glm::mat4 shadowProj = glm::perspective(glm::radians(90.0f), (float)SHADOW_WIDTH / (float)SHADOW_HEIGHT, near_plane, far_plane);
@@ -117,7 +117,7 @@ int main()
         shadowTransforms.push_back(shadowProj * glm::lookAt(lightPos, lightPos + glm::vec3(0.0f, -1.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f)));
         shadowTransforms.push_back(shadowProj * glm::lookAt(lightPos, lightPos + glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, -1.0f, 0.0f)));
         shadowTransforms.push_back(shadowProj * glm::lookAt(lightPos, lightPos + glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, -1.0f, 0.0f)));
-
+        // render della scena al depth cubemap
         glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
         glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
         glClear(GL_DEPTH_BUFFER_BIT);
@@ -128,7 +128,7 @@ int main()
         simpleDepthShader.setVec3("lightPos", lightPos);
         renderScene(simpleDepthShader);
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
+        // render normale della scena
         glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         shader.use();
@@ -136,7 +136,7 @@ int main()
         glm::mat4 view = camera.GetViewMatrix();
         shader.setMat4("projection", projection);
         shader.setMat4("view", view);
-
+        // set delle light uniform
         shader.setVec3("lightPos", lightPos);
         shader.setVec3("viewPos", camera.Position);
         shader.setInt("shadows", shadows);
@@ -153,18 +153,19 @@ int main()
     glfwTerminate();
     return 0;
 }
-
+// funzione per il rendering della scena
 void renderScene(const Shader& shader)
 {
+    // cubo che funge da stanza
     glm::mat4 model = glm::mat4(1.0f);
     model = glm::scale(model, glm::vec3(5.0f));
     shader.setMat4("model", model);
     glDisable(GL_CULL_FACE);
-    shader.setInt("reverse_normals", 1);
+    shader.setInt("reverse_normals", 1); // inversione delle normali quando disegnamo il cubo dall'interno così funziona ancora l'illuminazione
     renderCube();
     shader.setInt("reverse_normals", 0);
     glEnable(GL_CULL_FACE);
-
+    // tutti i cubi all'interno
     model = glm::mat4(1.0f);
     model = glm::translate(model, glm::vec3(4.0f, -3.5f, 0.0));
     model = glm::scale(model, glm::vec3(0.5f));
@@ -192,7 +193,7 @@ void renderScene(const Shader& shader)
     shader.setMat4("model", model);
     renderCube();
 }
-
+// funzione per il rendering di un singolo cubo
 unsigned int cubeVAO = 0;
 unsigned int cubeVBO = 0;
 void renderCube()

@@ -15,7 +15,7 @@ uniform vec3 viewPos;
 
 uniform float far_plane;
 uniform bool shadows;
-
+// array di direzioni offset
 vec3 gridSamplingDisk[20] = vec3[]
 (
    vec3(1, 1,  1), vec3( 1, -1,  1), vec3(-1, -1,  1), vec3(-1, 1,  1), 
@@ -27,8 +27,9 @@ vec3 gridSamplingDisk[20] = vec3[]
 
 float ShadowCalculation(vec3 fragPos)
 {
+    // vettore tra la fragment position e la light position
     vec3 fragToLight = fragPos - lightPos;
-
+    // la depth corrente è data dalla lunghezza tra la posizione del frammento e la luce
     float currentDepth = length(fragToLight);
 
     float shadow = 0.0;
@@ -66,7 +67,7 @@ void main()
     vec3 halfwayDir = normalize(lightDir + viewDir);  
     spec = pow(max(dot(normal, halfwayDir), 0.0), 64.0);
     vec3 specular = spec * lightColor;    
-
+    // calcola l'ombra
     float shadow = shadows ? ShadowCalculation(fs_in.FragPos) : 0.0;                      
     vec3 lighting = (ambient + (1.0 - shadow) * (diffuse + specular)) * color;    
     
